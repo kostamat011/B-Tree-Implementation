@@ -10,53 +10,54 @@ using namespace std;
 class BTree {
 public:
 
-BTree(int n);
-BTree(int n, string input);
-int MAX() { return max; }
-node* Root() { return root; }
-bool InsertKey(int k);
-bool DeleteKey(int k);
-bool SearchKey(int k);
-void Split(node* child);
-void Merge(node* c1, node* c2);
-void RemoveKey(node* c, int i);
-void RemoveKeyValue(node* c, int k);
-void AddKey(node* c, int k);
-bool DeleteFromLeaf(node* p, int k);
-void Balance(node* p);
-void DeleteTree();
-vector<int> LevelOrder();
+    struct node {
+        int* keys;
+        node** kids;
+        node* parent;
+        int numKeys;
+        int NumKids(int max);
+        node* CopyNode();
+        bool isLeaf;
+        int m;
+    };
 
-bool bp;
+    BTree(int n);
+    BTree(int n, string input);
+    int MAX() { return max; }
+    node* Root() { return root; }
+    bool InsertKey(int k);
+    bool DeleteKey(int k);
+    bool SearchKey(int k);
+    void Split(node* child);
+    void Merge(node* c1, node* c2);
+    void RemoveKey(node* c, int i);
+    void RemoveKeyValue(node* c, int k);
+    void AddKey(node* c, int k);
+    bool DeleteFromLeaf(node* p, int k);
+    void Balance(node* p);
+    void DeleteTree();
+    vector<int> LevelOrder();
 
-friend ostream& operator<<(ostream& os, BTree* const bt);//ispis
+    bool bp;
+
+    friend ostream& operator<<(ostream& os, BTree* const bt);//ispis
 
 
 
 private:
-struct node {
-int* keys;
-node** kids;
-node* parent;
-int numKeys;
-int NumKids(int max);
-node* CopyNode();
-bool isLeaf;
-int m;
+
+    int max;
+    int min;
+    node* root;
+
+    static node* GetNode(int m);
+    static node* RightSibling(node* k);
+    static node* LeftSibling(node* k);
+    static int ParentIndex(node* parent, node* child);
+    static void Sort(int* arr, int n);							
+    static void SortKids(node** arr, int n);		
+
 };
-int max;
-int min;
-node* root;
-
-static node* GetNode(int m);
-static node* RightSibling(node* k);
-static node* LeftSibling(node* k);
-static int ParentIndex(node* parent, node* child);
-static void Sort(int* arr, int n);							
-static void SortKids(node** arr, int n);					
-};
-
-
 
 typedef BTree::node node;
 
