@@ -1,4 +1,13 @@
 #pragma once
+
+/*
+* BTree Implementation
+* Author: Kosta Matijevic
+* Date: Nov 2019
+* Operations time complexity: O(log(n))
+* Memory: O(n) 
+*/
+
 #include<iostream>
 #include<queue>
 #include<stack>
