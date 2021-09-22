@@ -9,16 +9,7 @@ using namespace std;
 
 class BTree {
 public:
-    struct node {
-        int* keys;				//niz kljuceva
-        node** kids;			//niz sinova
-        node* parent;			//otac
-        int numKeys;			//broj popunjenih kljuceva
-        int NumKids(int max);	//broj podstabala,
-        node* CopyNode();
-        bool isLeaf;			//da li je list
-        int m;
-    };
+    
     BTree(int n);												//konstruktor za kreiranje praznog stabla
     BTree(int n, string input);									//konstruktor za kreiranje iz fajla
     int MAX() { return max; }									//getter za max
@@ -43,6 +34,16 @@ public:
     
 
 private:
+    struct node {
+            int* keys;				                            //niz kljuceva
+            node** kids;			                            //niz sinova
+            node* parent;			                            //otac
+            int numKeys;			                            //broj popunjenih kljuceva
+            int NumKids(int max);	                            //broj podstabala,
+            node* CopyNode();
+            bool isLeaf;			                            //da li je list
+            int m;
+    };
     int max;													//red stabla, max kljuceva je u stvari max-1
     int min;													//minimalan broj kljuceva
     node* root;													//koren stabla
